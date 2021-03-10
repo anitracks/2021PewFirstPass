@@ -11,10 +11,10 @@ import pdb
 import csv
 
 
-"""! This is the main function that collects command line arguments
-and acts on them.
-"""
 def main():
+    """! This is the main function that collects command line arguments
+    and acts on them.
+    """
     print("Hello World!")
 
 if __name__ == '__main__':
