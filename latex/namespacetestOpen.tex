@@ -20,15 +20,35 @@ This is the main function that collects command line arguments and acts on them.
 
 
 
-Definition at line 14 of file test\+Open.\+py.
+Definition at line 19 of file test\+Open.\+py.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{14 \textcolor{keyword}{def }\mbox{\hyperlink{namespacetestOpen_a4daf40e2a75906b1c92ddff7a5f980f6}{main}}():}
-\DoxyCodeLine{15     \textcolor{stringliteral}{"{}"{}"{}! This is the main function that collects command line arguments}}
-\DoxyCodeLine{16 \textcolor{stringliteral}{    and acts on them.}}
-\DoxyCodeLine{17 \textcolor{stringliteral}{    "{}"{}"{}}}
-\DoxyCodeLine{18     print(\textcolor{stringliteral}{"{}Hello World!"{}})}
-\DoxyCodeLine{19 }
+\DoxyCodeLine{19 \textcolor{keyword}{def }\mbox{\hyperlink{namespacetestOpen_a4daf40e2a75906b1c92ddff7a5f980f6}{main}}():}
+\DoxyCodeLine{20     \textcolor{stringliteral}{"{}"{}"{}! This is the main function that collects command line arguments}}
+\DoxyCodeLine{21 \textcolor{stringliteral}{    and acts on them.}}
+\DoxyCodeLine{22 \textcolor{stringliteral}{    "{}"{}"{}}}
+\DoxyCodeLine{23     parser = argparse.ArgumentParser(description=\_\_doc\_\_, fromfile\_prefix\_chars=\textcolor{stringliteral}{'@'})}
+\DoxyCodeLine{24     parser.add\_argument(\textcolor{stringliteral}{'csvfile'}, help=\textcolor{stringliteral}{'The name of the csv file to load'})}
+\DoxyCodeLine{25     parser.add\_argument(\textcolor{stringliteral}{'dbfile'}, help=\textcolor{stringliteral}{'The name of the sqlite db file'})}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27     start\_time = datetime.datetime.now()  \textcolor{comment}{\# save the time the script started}}
+\DoxyCodeLine{28     args = parser.parse\_args()  \textcolor{comment}{\# parse the command line arguments}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30     csvDF = pd.read\_csv(args.csvfile)  \textcolor{comment}{\# read in the csv data}}
+\DoxyCodeLine{31     print(f\textcolor{stringliteral}{'The column names are:\(\backslash\)n\{csvDF.columns.values\}'})}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33     \textcolor{comment}{\# calculate the median judgment amount}}
+\DoxyCodeLine{34     medJudgment = np.nanmedian(csvDF[\textcolor{stringliteral}{'Judgment Amount'}])}
+\DoxyCodeLine{35     print(f\textcolor{stringliteral}{'The median judgment amount is \$\{medJudgment\}'})}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37     \textcolor{comment}{\#conn = sqlite3.connect(args.dbfile)  \# connect to the database}}
+\DoxyCodeLine{38     \textcolor{comment}{\# load the csvData into the database}}
+\DoxyCodeLine{39     \textcolor{comment}{\#csvDF.to\_sql('csvDF', conn, if\_exists='fail', index=False)}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{comment}{\#    pdb.set\_trace()}}
+\DoxyCodeLine{42     stop\_time = datetime.datetime.now()}
+\DoxyCodeLine{43     print(f\textcolor{stringliteral}{'\{\_\_file\_\_\} took \{stop\_time-\/start\_time\} seconds'})}
+\DoxyCodeLine{44 }
 
 \end{DoxyCode}
